@@ -1,0 +1,249 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        h3{
+            display: inline-block;
+        }
+        #sub{
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+        #sub:hover{
+            cursor: pointer;
+            width: 100px;
+        }
+        form{
+            justify-content: center;
+        }
+        fieldset{
+            margin-top: 100px;
+            width: 1000px;
+            margin-left: 100px;
+            height: 450px;
+            /* border: solid whitesmoke 2px; */
+            text-align: center;
+        }
+        body{
+            background-color: black;
+            color: whitesmoke;
+            
+        }
+        span{
+            margin-left: 0px
+           
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div>
+           <form action="" id="formm">
+            <fieldset>
+                <legend>Form validation</legend>
+            <h3 >First Name</h3>
+            <input class="form-label" id="fname"  type="text" placeholder="enter your first name" style="margin-left: 100px;"><span id="ftxt"></span><br>
+            <h3 >Lastname</h3>
+            <input id="Lname" type="text" placeholder="enter your last name" style="margin-left: 115px;"><span id="ltxt"></span><br>
+            <h3>Email</h3>
+            <input id="email" type="text" placeholder="example@.com" style="margin-left: 167px;"><span id="emailtxt"></span><br>
+            <h3>Contact no</h3>
+            <input id="number" type="number" style="margin-left:96px;"><span id="numtxt"></span><br>
+            <h3 style="margin-left: -70px;">Gender</h3>
+            <input id="male" type="radio" name="abc" value="" onclick="handlemale()" style="margin-left: 144px;" >Male
+            <input id="female" type="radio" name="abc" value="" onclick="handlefemale()">Female <span id="radiotxt"></span> <br>
+            <h3 style="margin-left: -45px;">DOB</h3>
+            <input id="date" type="date" style="margin-left: 177px;"><span id="datetxt"></span><br>
+            <h3>Password</h3>
+            <input id="password" type="password" style="margin-left: 114px;"><span id="ptxt"></span><br>
+            <h3>Confirm Password</h3>
+            <input id="cpassword" type="password" style="margin-left: 3px;"><span id="ctxt"></span><br>
+            <input type="checkbox" id="cbox" onclick="ck()" value=""> Agree to terms and conditions <span id="cktxt"></span> <br>
+            <input class="btn btn-primary" id="sub" type="submit"> 
+        </fieldset>
+           </form>
+           
+    </div>
+</body>
+<script>
+    let arr=[]
+    let fname=document.getElementById("fname")
+    let Lname=document.getElementById("Lname")
+    let email=document.getElementById("email")
+    let num=document.getElementById("number")
+    let maleg=document.getElementById("male")
+    let femaleg=document.getElementById("female")
+    let dob=document.getElementById("date")
+    let pass=document.getElementById("password")
+    let copass=document.getElementById("cpassword")
+    let submitbtn=document.getElementById("sub")
+    let ftxt=document.getElementById("ftxt")
+    let ltxt=document.getElementById("ltxt")
+    let emailtxt=document.getElementById("emailtxt")
+    let numtxt=document.getElementById("numtxt")
+    let radiotxt=document.getElementById("radiotxt")
+    let datetxt=document.getElementById("datetxt")
+    let ptxt=document.getElementById("ptxt")
+    let ctxt=document.getElementById("ctxt")
+    let cbox= document.getElementById("cbox")
+    let cktxt=document.getElementById("cktxt")
+
+    let handlemale=()=>{
+        maleg.value="male"
+        console.log(maleg.value);
+    }
+    let handlefemale=()=>{
+        femaleg.value="female"
+        console.log(femaleg.value);
+    }
+ let ck=()=>{
+    cbox.value="in"
+ }
+  formm.addEventListener('submit',(e)=>{
+    e.preventDefault()
+    res=fname.value
+    res1=Lname.value
+    let resemail=email.value
+    let resnum=num.value
+    let dobtxt=dob.value
+    let pasw=pass.value
+    let copasw=copass.value;
+    let ml=maleg.value;
+    let fl=femaleg.value
+    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    let ckbox=cbox.value;
+
+//First Name
+    if(res!=""){
+        console.log(res);
+        fname.style.border="solid blue 2px"
+    }
+    else{
+        ftxt.innerText="Enter First Name"
+        ftxt.style.color="red"
+
+    }
+
+  //Last Name  
+    if(res1!=""){
+        console.log(res1);
+        Lname.style.border="solid blue 2px"
+
+    }
+    else{
+        ltxt.innerText="Enter Last Name "
+        ltxt.style.color="red"
+
+    }
+
+    //Email
+    if(resemail.match(pattern)){
+        console.log(resemail);
+        email.style.border="solid blue 2px"
+
+    }
+    else{
+       emailtxt.innerText="enter valid email include@"
+       emailtxt.style.color="red"
+
+    }
+
+    //Contact No
+    if(resnum!=""){
+        console.log(resnum);
+        num.style.border="solid blue 2px"
+        
+
+    }
+    else{
+        numtxt.innerText="not valid number"
+        numtxt.style.color="red"
+
+    }
+
+    //Gender
+    
+    if(maleg.value || femaleg.value!=""){
+        console.log(maleg.value ,femaleg.value);
+       }
+    else{
+        radiotxt.innerText="choose gender"
+        radiotxt.style.color="red"
+
+
+    }
+
+    //Dob
+    if(dobtxt!=""){
+        console.log(dobtxt)
+        dob.style.border="solid blue 2px"
+
+    }
+    else{
+        datetxt.innerText="please enter Dob"
+        datetxt.style.color="red"
+
+    }
+    //checkbox//
+    if(cbox.value==""){
+        cktxt.innerText="You must agree before submitting"
+        cktxt.style.color="red"
+
+    }
+    else{
+        console.log("clicked");
+    }
+
+    //Password
+    if(pasw==""){
+        ptxt.innerText="enter valid password"
+        ptxt.style.color="red"
+
+    }
+    else{
+        console.log(pasw);
+    }
+
+    //Confirm Password
+    if(copasw==""){
+        ctxt.innerText="enter valid c-password"
+        ctxt.style.color="red"
+
+
+    }
+    else{
+        console.log(copasw);
+    }
+
+    //checking weather both password are same//
+   if(pasw && copasw && resnum && dobtxt && ml || fl && resemail && res1 && res && ckbox!="")
+   {
+    if(pasw===copasw){
+        alert("password correct");
+            // alert("hello")
+        }
+    else{
+        alert("password doen't match");
+            // alert("bye")
+        }
+    }
+  })
+
+   
+
+    
+    
+
+
+
+
+
+
+
+</script>
+</html>
